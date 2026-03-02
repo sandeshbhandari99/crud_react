@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, Trash2, Send, Download } from 'lucide-react';
+import { Plus, Trash2, Send, Download, User, Phone, MapPin } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const InvoiceForm = ({ onChange }) => {
     const [invoice, setInvoice] = useState({
         clientName: '',
         clientPhone: '',
+        clientAddress: '',
         invoiceNumber: `INV-${Math.floor(100000 + Math.random() * 900000)}`,
         items: [{ id: 1, description: 'Service Description', quantity: 1, price: 100 }],
         currency: 'Rs.',
         taxRate: 13,
+        discountRate: 0,
     });
 
     useEffect(() => {
@@ -47,21 +49,52 @@ const InvoiceForm = ({ onChange }) => {
 
     return (
         <div className="card card-special">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
+            <div style={{ marginBottom: '30px' }}>
                 <h2 style={{ margin: 0 }}>Client Information</h2>
-                <span style={{ fontSize: '0.85rem', background: '#e0f2fe', color: '#0ea5e9', padding: '4px 12px', borderRadius: '20px', fontWeight: '600' }}>
-                    {invoice.invoiceNumber}
-                </span>
             </div>
 
-            <div className="input-group">
-                <label>Client Name</label>
-                <input type="text" name="clientName" placeholder="Full Name" value={invoice.clientName} onChange={handleChange} />
-            </div>
+            <div className="client-info-grid">
+                <div className="info-card">
+                    <div className="info-icon"><User size={20} /></div>
+                    <div className="info-content">
+                        <label>Client Name</label>
+                        <input
+                            type="text"
+                            name="clientName"
+                            placeholder="Full Name"
+                            value={invoice.clientName}
+                            onChange={handleChange}
+                        />
+                    </div>
+                </div>
 
-            <div className="input-group">
-                <label>Phone Number</label>
-                <input type="text" name="clientPhone" placeholder="+977 98XXXXXXX" value={invoice.clientPhone} onChange={handleChange} />
+                <div className="info-card">
+                    <div className="info-icon"><Phone size={20} /></div>
+                    <div className="info-content">
+                        <label>Phone Number</label>
+                        <input
+                            type="text"
+                            name="clientPhone"
+                            placeholder="+977 98XXXXXXX"
+                            value={invoice.clientPhone}
+                            onChange={handleChange}
+                        />
+                    </div>
+                </div>
+
+                <div className="info-card">
+                    <div className="info-icon"><MapPin size={20} /></div>
+                    <div className="info-content">
+                        <label>Address</label>
+                        <input
+                            type="text"
+                            name="clientAddress"
+                            placeholder="Street, City, Country"
+                            value={invoice.clientAddress}
+                            onChange={handleChange}
+                        />
+                    </div>
+                </div>
             </div>
 
             <h3 style={{ margin: '30px 0 15px' }}>Line Items</h3>
@@ -104,6 +137,10 @@ const InvoiceForm = ({ onChange }) => {
                 <div className="input-group">
                     <label>Tax Rate (%)</label>
                     <input type="number" name="taxRate" value={invoice.taxRate} onChange={handleChange} />
+                </div>
+                <div className="input-group">
+                    <label>Discount (%)</label>
+                    <input type="number" name="discountRate" value={invoice.discountRate} min="0" max="100" onChange={handleChange} />
                 </div>
             </div>
         </div>
