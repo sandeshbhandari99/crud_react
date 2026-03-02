@@ -28,10 +28,6 @@ const InvoicePreview = ({ data }) => {
                         <p style={{ fontWeight: '700', margin: 0, fontSize: '1.1rem' }}>{data.clientName || '---'}</p>
                         <p style={{ margin: 0, fontSize: '0.9rem', color: '#64748b' }}>{data.clientPhone || 'No Phone provided'}</p>
                     </div>
-                    <div style={{ textAlign: 'right' }}>
-                        <p style={{ fontWeight: '600', marginBottom: '5px', color: '#94a3b8', fontSize: '0.75rem', textTransform: 'uppercase' }}>ISSUE DATE</p>
-                        <p style={{ margin: 0 }}>{data.date}</p>
-                    </div>
                 </div>
 
                 <table>

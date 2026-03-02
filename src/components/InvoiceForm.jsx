@@ -7,7 +7,6 @@ const InvoiceForm = ({ onChange }) => {
         clientName: '',
         clientPhone: '',
         invoiceNumber: `INV-${Math.floor(100000 + Math.random() * 900000)}`,
-        date: new Date().toISOString().split('T')[0],
         items: [{ id: 1, description: 'Service Description', quantity: 1, price: 100 }],
         currency: 'Rs.',
         taxRate: 13,
