@@ -10,11 +10,12 @@ function App() {
   return (
     <div className="container">
       <header className="header">
-        <h1>
-          <Receipt size={36} style={{ verticalAlign: 'middle', marginRight: '10px', color: '#0ea5e9' }} />
-          Everest Billing
-        </h1>
-        <p style={{ color: '#64748b' }}>Precision invoicing at the peak of performance.</p>
+        <div className="header-decoration">BILLING</div>
+        <div className="title-container">
+          <h1>
+            Everest <span className="accent-text">Billing</span>
+          </h1>
+        </div>
       </header>
 
       <main className="grid">

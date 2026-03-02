@@ -46,7 +46,7 @@ const InvoiceForm = ({ onChange }) => {
     };
 
     return (
-        <div className="card">
+        <div className="card card-special">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
                 <h2 style={{ margin: 0 }}>Client Information</h2>
                 <span style={{ fontSize: '0.85rem', background: '#e0f2fe', color: '#0ea5e9', padding: '4px 12px', borderRadius: '20px', fontWeight: '600' }}>
@@ -88,7 +88,7 @@ const InvoiceForm = ({ onChange }) => {
                         </div>
                         <div className="input-group">
                             <label>Total</label>
-                            <input type="text" value={`${invoice.currency}${(item.quantity * item.price).toFixed(2)}`} disabled />
+                            <input type="text" value={(item.quantity * item.price).toFixed(2)} disabled />
                         </div>
                         <button className="btn" style={{ padding: '8px', color: '#ef4444', background: '#fef2f2' }} onClick={() => removeItem(item.id)}>
                             <Trash2 size={18} />
@@ -100,14 +100,10 @@ const InvoiceForm = ({ onChange }) => {
                 <Plus size={18} /> Add Item
             </button>
 
-            <div className="grid" style={{ marginTop: '30px', gridTemplateColumns: '1fr 1fr' }}>
+            <div className="grid" style={{ marginTop: '30px' }}>
                 <div className="input-group">
                     <label>Tax Rate (%)</label>
                     <input type="number" name="taxRate" value={invoice.taxRate} onChange={handleChange} />
-                </div>
-                <div className="input-group">
-                    <label>Currency Symbol</label>
-                    <input type="text" name="currency" value={invoice.currency} onChange={handleChange} />
                 </div>
             </div>
         </div>

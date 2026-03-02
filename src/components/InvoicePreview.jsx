@@ -44,8 +44,8 @@ const InvoicePreview = ({ data }) => {
                             <tr key={index}>
                                 <td style={{ fontWeight: '500' }}>{item.description || 'Service/Item'}</td>
                                 <td>{item.quantity}</td>
-                                <td>{data.currency}{item.price.toFixed(2)}</td>
-                                <td style={{ textAlign: 'right' }}>{data.currency}{(item.quantity * item.price).toFixed(2)}</td>
+                                <td>{item.price.toFixed(2)}</td>
+                                <td style={{ textAlign: 'right' }}>{(item.quantity * item.price).toFixed(2)}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -54,15 +54,15 @@ const InvoicePreview = ({ data }) => {
                 <div className="totals">
                     <div className="total-row">
                         <span>Subtotal:</span>
-                        <span>{data.currency}{subtotal.toFixed(2)}</span>
+                        <span>{subtotal.toFixed(2)}</span>
                     </div>
                     <div className="total-row">
                         <span>Tax ({data.taxRate}%):</span>
-                        <span>{data.currency}{taxAmount.toFixed(2)}</span>
+                        <span>{taxAmount.toFixed(2)}</span>
                     </div>
                     <div className="total-row total-final">
                         <span>TOTAL:</span>
-                        <span>{data.currency}{total.toFixed(2)}</span>
+                        <span>{total.toFixed(2)}</span>
                     </div>
                 </div>
             </div>
