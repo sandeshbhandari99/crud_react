@@ -466,19 +466,44 @@ textarea:focus {
 
 /* Print styles — only show invoice content */
 @media print {
-    body>* {
-        display: none !important;
-    }
 
-    #printable-invoice {
-        display: block !important;
-    }
-
-    .invoice-preview {
-        position: static !important;
-    }
-
+    .header,
+    footer,
+    .card-special,
+    .btn,
     .paid-popup {
         display: none !important;
+    }
+
+    body,
+    .container,
+    .grid,
+    .invoice-preview {
+        display: block !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    .preview-content {
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        min-height: auto !important;
+    }
+
+    /* Force background colors to show in print */
+    .total-final-box {
+        background-color: #ef4444 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .preview-header {
+        border-bottom: 2px solid var(--primary) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
     }
 }

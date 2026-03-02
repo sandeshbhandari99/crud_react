@@ -8,7 +8,7 @@ const InvoiceForm = ({ onChange }) => {
         clientPhone: '',
         clientAddress: '',
         invoiceNumber: `INV-${Math.floor(100000 + Math.random() * 900000)}`,
-        items: [{ id: 1, description: 'Service Description', quantity: 1, price: 100 }],
+        items: [{ id: 1, description: '', quantity: '', price: '' }],
         currency: 'Rs.',
         taxRate: 13,
         discountRate: 0,
@@ -26,7 +26,8 @@ const InvoiceForm = ({ onChange }) => {
     const handleItemChange = (id, field, value) => {
         const newItems = invoice.items.map(item => {
             if (item.id === id) {
-                return { ...item, [field]: field === 'description' ? value : Number(value) };
+                // Keep raw string for display; numeric fields stored as string (coerced in preview)
+                return { ...item, [field]: value };
             }
             return item;
         });
@@ -109,19 +110,19 @@ const InvoiceForm = ({ onChange }) => {
                     >
                         <div className="input-group">
                             <label>Description</label>
-                            <input type="text" value={item.description} onChange={(e) => handleItemChange(item.id, 'description', e.target.value)} />
+                            <input type="text" value={item.description} placeholder="e.g. Web Design, Repair Service..." onChange={(e) => handleItemChange(item.id, 'description', e.target.value)} />
                         </div>
                         <div className="input-group">
                             <label>Qty</label>
-                            <input type="number" value={item.quantity} onChange={(e) => handleItemChange(item.id, 'quantity', e.target.value)} />
+                            <input type="number" value={item.quantity} placeholder="0" onChange={(e) => handleItemChange(item.id, 'quantity', e.target.value)} />
                         </div>
                         <div className="input-group">
                             <label>Price</label>
-                            <input type="number" value={item.price} onChange={(e) => handleItemChange(item.id, 'price', e.target.value)} />
+                            <input type="number" value={item.price} placeholder="0.00" onChange={(e) => handleItemChange(item.id, 'price', e.target.value)} />
                         </div>
                         <div className="input-group">
                             <label>Total</label>
-                            <input type="text" value={(item.quantity * item.price).toFixed(2)} disabled />
+                            <input type="text" value={((Number(item.quantity) || 0) * (Number(item.price) || 0)).toFixed(2)} disabled />
                         </div>
                         <button className="btn" style={{ padding: '8px', color: '#ef4444', background: '#fef2f2' }} onClick={() => removeItem(item.id)}>
                             <Trash2 size={18} />

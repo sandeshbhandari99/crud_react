@@ -7,10 +7,10 @@ const InvoicePreview = ({ data }) => {
 
     if (!data) return null;
 
-    const subtotal = data.items.reduce((acc, item) => acc + (item.quantity * item.price), 0);
-    const discountAmount = (subtotal * (data.discountRate || 0)) / 100;
+    const subtotal = data.items.reduce((acc, item) => acc + ((Number(item.quantity) || 0) * (Number(item.price) || 0)), 0);
+    const discountAmount = (subtotal * (Number(data.discountRate) || 0)) / 100;
     const afterDiscount = subtotal - discountAmount;
-    const taxAmount = (afterDiscount * data.taxRate) / 100;
+    const taxAmount = (afterDiscount * (Number(data.taxRate) || 0)) / 100;
     const total = afterDiscount + taxAmount;
 
     const handlePay = () => {
@@ -84,9 +84,9 @@ const InvoicePreview = ({ data }) => {
                         {data.items.map((item, index) => (
                             <tr key={index}>
                                 <td style={{ fontWeight: '600', color: '#1e293b' }}>{item.description || 'Consultancy/Service'}</td>
-                                <td style={{ color: '#64748b' }}>{item.quantity}</td>
-                                <td style={{ textAlign: 'right', color: '#64748b' }}>{item.price.toFixed(2)}</td>
-                                <td style={{ textAlign: 'right', fontWeight: '700', color: '#1e293b' }}>{(item.quantity * item.price).toFixed(2)}</td>
+                                <td style={{ color: '#64748b' }}>{Number(item.quantity) || 0}</td>
+                                <td style={{ textAlign: 'right', color: '#64748b' }}>{(Number(item.price) || 0).toFixed(2)}</td>
+                                <td style={{ textAlign: 'right', fontWeight: '700', color: '#1e293b' }}>{((Number(item.quantity) || 0) * (Number(item.price) || 0)).toFixed(2)}</td>
                             </tr>
                         ))}
                     </tbody>
